@@ -87,7 +87,8 @@ button:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
   font-size: 11.5px; font-weight: 700; letter-spacing: .09em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
 }
-.lede { font-size: 15.5px; line-height: 1.62; color: var(--ink-2); max-width: 76ch; }
+.lede { font-size: 15.5px; line-height: 1.62; color: var(--ink-2);
+        text-align: justify; text-justify: inter-word; hyphens: auto; }
 .lede strong { color: var(--ink); font-weight: 600; }
 
 /* ── Hero + stat tiles ──────────────────────────────────────── */
@@ -424,9 +425,6 @@ const ROLES = [
       label:"Selected engagement — Enterprise test-automation proof-of-concept (UiPath Test Suite)",
       bullets:[
         "Led a UiPath test-automation proof-of-concept for a large enterprise client, covering SAP test authoring, cross-platform execution, API-driven orchestration and CI/CD integration.",
-        "Automated SAP through native SAP activities rather than generic UI automation, making object interaction, data extraction and transaction execution markedly more reliable; tuned Strict against Fuzzy selectors to balance exact element matching with resilience to dynamic SAP UI changes.",
-        "Packaged SAP components into reusable libraries, establishing a shared framework for multi-project automation and broad regression suites.",
-        "Benchmarked UiPath against Worksoft for SAP authoring and documented the trade-off: Worksoft's model-based, low-technical approach produces test variants faster, while UiPath needs more setup around arguments, parameters and workflow mapping.",
         "Extended automation to macOS with UiPath Studio for macOS — Safari automation, native AppleScript for account-level tasks and terminal-initiated workflows — ran SAP GUI automation on macOS, connected command-line tooling to Claude, and wrote custom VB.NET in-workflow to generate TOTP codes for multi-factor authentication.",
         "Moved test data and artefacts off local machines using UiPath Data Service Entities for structured queries and Storage Buckets for test files, and verified Box integration for enterprise document workflows.",
         "Triggered UiPath Test Sets programmatically over REST from Postman and Bruno, proving external orchestration from enterprise CI/CD pipelines, schedulers and test-orchestration platforms without manual execution in Test Manager.",
@@ -513,8 +511,8 @@ const CERTS = [
 ];
 
 const STACK = [
-  ["RPA & test platforms", ["UiPath Studio","UiPath Studio for macOS","UiPath Orchestrator","UiPath Test Suite","UiPath Test Manager","UiPath Data Service","Blue Prism","Worksoft (evaluation)"]],
-  ["Enterprise apps",      ["SAP (native activities)","SAP GUI automation","Strict / Fuzzy selectors","Box","SharePoint Workflow"]],
+  ["RPA & test platforms", ["UiPath Studio","UiPath Studio for macOS","UiPath Orchestrator","UiPath Test Suite","UiPath Test Manager","UiPath Data Service","Blue Prism"]],
+  ["Enterprise apps",      ["SAP GUI automation","SAP test authoring","Box","SharePoint Workflow"]],
   ["Languages & scripting",["Python","VB.Net","PowerShell","VBA","VBScript","AppleScript","Ruby (Watir)","Regular Expressions"]],
   ["Integration & data",   ["REST / HTTP APIs","Postman","Bruno","UiPath Entities","Storage Buckets","SQL","MS Access"]],
   ["Test automation",      ["Test Sets","API-triggered execution","Assertion-based pass/fail","Regression suites","Reusable test libraries","Playwright","Ruby Watir"]],
