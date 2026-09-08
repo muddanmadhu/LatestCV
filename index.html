@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en" data-palette="#2a78d6,#eb6834,#1baf7a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Madhu Kumar — RPA Architect · Career Dashboard</title>
+<meta name="description" content="Interactive career dashboard for Madhu Kumar, RPA Architect — 15+ years in enterprise IT, 10+ in intelligent automation on UiPath and Blue Prism.">
+<style>
+/* ── Design tokens ───────────────────────────────────────────────
+   Palette: dataviz reference instance. Categorical slots 1-3
+   (blue / orange / aqua) — validated all-pairs, light and dark.   */
+:root {
+  color-scheme: light;
+  --page:        #f9f9f7;
+  --surface:     #fcfcfb;
+  --ink:         #0b0b0b;
+  --ink-2:       #52514e;
+  --muted:       #898781;
+  --grid:        #e1e0d9;
+  --axis:        #c3c2b7;
+  --border:      rgba(11,11,11,0.10);
+  --wash:        rgba(11,11,11,0.035);
+  --s1:          #2a78d6;
+  --s2:          #eb6834;
+  --s3:          #1baf7a;
+  --shadow:      0 1px 2px rgba(11,11,11,.05), 0 6px 20px rgba(11,11,11,.045);
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page:    #0d0d0d;  --surface: #1a1a19;
+    --ink:     #ffffff;  --ink-2:   #c3c2b7;  --muted: #898781;
+    --grid:    #2c2c2a;  --axis:    #383835;
+    --border:  rgba(255,255,255,0.10);
+    --wash:    rgba(255,255,255,0.05);
+    --s1:      #3987e5;  --s2:      #d95926;  --s3:    #199e70;
+    --shadow:  0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page:    #0d0d0d;  --surface: #1a1a19;
+  --ink:     #ffffff;  --ink-2:   #c3c2b7;  --muted: #898781;
+  --grid:    #2c2c2a;  --axis:    #383835;
+  --border:  rgba(255,255,255,0.10);
+  --wash:    rgba(255,255,255,0.05);
+  --s1:      #3987e5;  --s2:      #d95926;  --s3:    #199e70;
+  --shadow:  0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; padding: 0 20px 64px;
+  background: var(--page); color: var(--ink);
+  font: 400 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.wrap { max-width: 1060px; margin: 0 auto; }
+h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+a { color: var(--s1); }
+
+/* ── Header ─────────────────────────────────────────────────── */
+header { padding: 40px 0 20px; }
+.top { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; justify-content: space-between; }
+h1 { font-size: 34px; letter-spacing: -0.022em; line-height: 1.1; }
+.role-line { margin-top: 5px; font-size: 15px; font-weight: 600; color: var(--ink-2); }
+.contact { margin-top: 10px; font-size: 13.5px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.contact span { white-space: nowrap; }
+.tools { display: flex; gap: 8px; }
+button {
+  font: inherit; font-size: 13px; font-weight: 500;
+  color: var(--ink-2); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 7px 13px; cursor: pointer;
+  transition: background .12s, color .12s, border-color .12s;
+}
+button:hover { background: var(--wash); color: var(--ink); }
+button:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
+
+/* ── Cards ──────────────────────────────────────────────────── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 22px 24px; margin-top: 18px;
+  box-shadow: var(--shadow);
+}
+.card > h2 {
+  font-size: 11.5px; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
+}
+.lede { font-size: 15.5px; line-height: 1.62; color: var(--ink-2); max-width: 76ch; }
+.lede strong { color: var(--ink); font-weight: 600; }
+
+/* ── Hero + stat tiles ──────────────────────────────────────── */
+.stats { display: grid; grid-template-columns: 1.35fr 1fr 1fr 1fr 1fr; gap: 1px;
+         background: var(--border); border-radius: 12px; overflow: hidden; }
+.tile { background: var(--surface); padding: 18px 20px; }
+.tile .v { font-size: 30px; font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; color: var(--ink); }
+.tile.hero .v { font-size: 52px; letter-spacing: -0.03em; }
+.tile .l { margin-top: 6px; font-size: 12.5px; line-height: 1.35; color: var(--ink-2); }
+.tile .s { margin-top: 3px; font-size: 11.5px; color: var(--muted); }
+
+/* ── Filters ────────────────────────────────────────────────── */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.filters .lbl { font-size: 11.5px; font-weight: 700; letter-spacing: .09em;
+                text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+.chip {
+  font: inherit; font-size: 13px; padding: 6px 13px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface);
+  color: var(--ink-2); cursor: pointer;
+}
+.chip:hover { background: var(--wash); color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.chip:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
+
+/* ── Timeline (Gantt) ───────────────────────────────────────── */
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 18px; }
+.legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 7px; vertical-align: -1px; }
+.legend span { font-size: 12.5px; color: var(--ink-2); }
+
+.gantt { position: relative; }
+.grow { display: grid; grid-template-columns: 186px 1fr; align-items: center;
+        gap: 14px; margin-bottom: 9px; transition: opacity .18s; }
+.grow.dim { opacity: .26; }
+.gname { text-align: right; line-height: 1.25; }
+.gname b { display: block; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.gname em { display: block; font-size: 12px; font-style: normal; color: var(--muted); }
+.track { position: relative; height: 30px; }
+.track::before {
+  content: ""; position: absolute; inset: 14px 0 auto 0; height: 1px; background: var(--grid);
+}
+.bar {
+  position: absolute; top: 5px; height: 20px; border-radius: 4px;
+  cursor: pointer; border: 0; padding: 0; display: block;
+}
+.bar:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.blab {
+  position: absolute; top: 8px; font-size: 11.5px; line-height: 14px;
+  white-space: nowrap; pointer-events: none; font-variant-numeric: tabular-nums;
+}
+.blab.inside { color: #fff; font-weight: 500; }
+.blab.outside { color: var(--muted); }
+
+.axis { display: grid; grid-template-columns: 186px 1fr; gap: 14px; margin-top: 2px; }
+.ticks { position: relative; height: 20px; border-top: 1px solid var(--axis); }
+.tick { position: absolute; top: 5px; transform: translateX(-50%);
+        font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* certification markers on the shared axis */
+.certtrack { display: grid; grid-template-columns: 186px 1fr; gap: 14px; margin-top: 14px; }
+.certlbl { text-align: right; font-size: 11.5px; font-weight: 700; letter-spacing: .07em;
+           text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+.certrail { position: relative; height: 34px; }
+.certrail::before { content: ""; position: absolute; inset: 7px 0 auto 0; height: 1px; background: var(--grid); }
+.cdot {
+  position: absolute; top: 2px; width: 11px; height: 11px; border-radius: 50%;
+  background: var(--s1); box-shadow: 0 0 0 2px var(--surface);
+  transform: translateX(-50%); cursor: pointer; border: 0; padding: 0;
+}
+.cdot:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.cyr { position: absolute; top: 17px; transform: translateX(-50%);
+       font-size: 10.5px; color: var(--muted); font-variant-numeric: tabular-nums; pointer-events: none; }
+
+/* ── Role detail cards ──────────────────────────────────────── */
+.roles { display: grid; gap: 10px; }
+.role { border: 1px solid var(--border); border-radius: 11px; overflow: hidden; transition: opacity .18s; }
+.role.dim { opacity: .3; }
+.rhead {
+  width: 100%; text-align: left; display: flex; gap: 12px; align-items: baseline;
+  padding: 14px 16px; background: transparent; border: 0; border-radius: 0; cursor: pointer;
+}
+.rhead:hover { background: var(--wash); }
+.rdot { width: 9px; height: 9px; border-radius: 3px; flex: 0 0 auto; align-self: center; }
+.rtitle { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+.rco { font-size: 13px; color: var(--ink-2); }
+.rdate { margin-left: auto; font-size: 12.5px; color: var(--muted); white-space: nowrap;
+         font-variant-numeric: tabular-nums; }
+.rchev { color: var(--muted); font-size: 11px; transition: transform .18s; }
+.role[data-open="true"] .rchev { transform: rotate(90deg); }
+.rbody { display: none; padding: 0 16px 16px 37px; }
+.role[data-open="true"] .rbody { display: block; }
+.rbody ul { margin: 0; padding-left: 17px; }
+.rbody li { font-size: 13.8px; line-height: 1.55; color: var(--ink-2); margin-bottom: 6px; }
+
+/* ── Capability matrix ──────────────────────────────────────── */
+.mx { width: 100%; border-collapse: collapse; }
+.mx th, .mx td { padding: 0; }
+.mx thead th { vertical-align: bottom; padding-bottom: 12px; }
+.mx thead th.corner { text-align: left; }
+.mx .colh { text-align: center; width: 92px; }
+.mx .colh b { display: block; font-size: 12.5px; font-weight: 600; color: var(--ink); }
+.mx .colh em { display: block; font-size: 10.5px; font-style: normal; color: var(--muted);
+               font-variant-numeric: tabular-nums; margin-top: 2px; }
+.mx tbody th {
+  text-align: left; font-weight: 400; font-size: 13.5px; color: var(--ink-2);
+  padding: 7px 16px 7px 0; border-top: 1px solid var(--grid);
+}
+.mx tbody td { border-top: 1px solid var(--grid); text-align: center; }
+.mx tbody tr:hover th, .mx tbody tr:hover td { background: var(--wash); }
+.cell { display: inline-block; width: 12px; height: 12px; border-radius: 50%; }
+.cell.on  { background: var(--c); }
+.cell.off { box-shadow: inset 0 0 0 1.5px var(--grid); }
+.mxkey { margin-top: 14px; font-size: 12px; color: var(--muted); }
+.mxkey .cell { vertical-align: -1px; margin: 0 5px 0 0; }
+.mxkey .cell.on { --c: var(--muted); }
+
+/* ── Stack chips ────────────────────────────────────────────── */
+.stack { display: grid; grid-template-columns: 172px 1fr; gap: 10px 18px; align-items: baseline; }
+.stack dt { font-size: 12.5px; font-weight: 600; color: var(--muted); }
+.stack dd { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 12.5px; padding: 4px 10px; border-radius: 6px;
+       background: var(--wash); color: var(--ink-2); border: 1px solid var(--border); }
+
+/* ── Facts grid ─────────────────────────────────────────────── */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+.facts h3 { font-size: 11.5px; font-weight: 700; letter-spacing: .09em;
+            text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.facts ul { margin: 0; padding: 0; list-style: none; }
+.facts li { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); margin-bottom: 8px; }
+.facts li b { display: block; color: var(--ink); font-weight: 500; }
+.facts li span { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* ── Table view ─────────────────────────────────────────────── */
+#tables { display: none; }
+#tables[data-show="true"] { display: block; }
+.dt { width: 100%; border-collapse: collapse; margin-bottom: 22px; font-size: 13px; }
+.dt caption { text-align: left; font-size: 12.5px; font-weight: 600; color: var(--ink);
+              padding-bottom: 8px; }
+.dt th, .dt td { text-align: left; padding: 7px 12px 7px 0; border-bottom: 1px solid var(--grid);
+                 color: var(--ink-2); vertical-align: top; }
+.dt thead th { font-size: 11.5px; font-weight: 700; letter-spacing: .06em;
+               text-transform: uppercase; color: var(--muted); }
+
+/* ── Tooltip ────────────────────────────────────────────────── */
+#tip {
+  position: fixed; z-index: 50; pointer-events: none; opacity: 0;
+  transition: opacity .1s; max-width: 260px;
+  background: var(--ink); color: var(--page);
+  font-size: 12.5px; line-height: 1.45; padding: 8px 11px; border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.24);
+}
+#tip[data-on="true"] { opacity: 1; }
+#tip b { display: block; font-weight: 600; margin-bottom: 2px; }
+
+footer { margin-top: 26px; font-size: 12px; color: var(--muted); text-align: center; }
+
+@media (max-width: 800px) {
+  .stats { grid-template-columns: 1fr 1fr; }
+  .tile.hero { grid-column: 1 / -1; }
+  .grow, .axis, .certtrack { grid-template-columns: 116px 1fr; gap: 10px; }
+  .stack { grid-template-columns: 1fr; }
+  h1 { font-size: 27px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ── Print → clean PDF ──────────────────────────────────────── */
+@media print {
+  :root, :root[data-theme="dark"] {
+    color-scheme: light;
+    --page: #fff; --surface: #fff; --ink: #000; --ink-2: #333; --muted: #666;
+    --grid: #ddd; --axis: #bbb; --border: #ccc; --wash: #f4f4f2;
+    --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --shadow: none;
+  }
+  @page { margin: 12mm; }
+  body { padding: 0; font-size: 10.5pt; }
+  .no-print, #tip { display: none !important; }
+  .card { break-inside: avoid; page-break-inside: avoid; margin-top: 10px;
+          box-shadow: none; border-radius: 8px; padding: 14px 16px; }
+  header { padding: 0 0 6px; }
+  h1 { font-size: 22pt; }
+  .role .rbody { display: block !important; }
+  .role, .grow { opacity: 1 !important; }
+  .rhead { padding-bottom: 6px; }
+  .roles { gap: 6px; }
+  #tables { display: none !important; }
+  a { text-decoration: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="top">
+    <div>
+      <h1>Madhu Kumar</h1>
+      <div class="role-line">RPA Architect &middot; Intelligent Automation</div>
+      <div class="contact">
+        <span>Bengaluru, India</span>
+        <span><a href="https://www.linkedin.com/in/muddan-madhu-178bb311/" target="_blank" rel="noopener">linkedin.com/in/muddan-madhu-178bb311</a></span>
+      </div>
+    </div>
+    <div class="tools no-print">
+      <button id="themeBtn" aria-label="Switch colour theme">◐&nbsp; Theme</button>
+      <button id="tableBtn" aria-expanded="false" aria-controls="tables">▤&nbsp; Data</button>
+      <button id="printBtn">⇩&nbsp; PDF</button>
+    </div>
+  </div>
+</header>
+
+<section class="card" aria-label="Career at a glance">
+  <div class="stats">
+    <div class="tile hero">
+      <div class="v">15<span style="font-size:.55em">+</span></div>
+      <div class="l">Years in enterprise IT</div>
+      <div class="s">Since April 2011</div>
+    </div>
+    <div class="tile"><div class="v">10+</div><div class="l">Years in RPA</div><div class="s">Since May 2016</div></div>
+    <div class="tile"><div class="v">5</div><div class="l">Certifications</div><div class="s">UiPath · Blue Prism · ITIL</div></div>
+    <div class="tile"><div class="v">5</div><div class="l">Organisations</div><div class="s">Wipro · Cognizant · ISG · IBM · HP</div></div>
+    <div class="tile"><div class="v">2</div><div class="l">RPA platforms</div><div class="s">UiPath · Blue Prism</div></div>
+  </div>
+  <p class="lede" style="margin:20px 0 0">
+    RPA Architect owning the full automation lifecycle — <strong>process assessment and feasibility,
+    solution architecture, SDD authoring, development, UAT, deployment and hypercare</strong>.
+    Strongest where automation meets integration: wiring bots into web applications, thick-client
+    desktop apps, REST/HTTP APIs, PowerShell and SQL. A career that began in ITIL service management
+    and moved through Blue Prism development into UiPath architecture and team leadership.
+  </p>
+</section>
+
+<section class="card no-print" aria-label="Filter roles by capability">
+  <div class="filters" id="filters">
+    <span class="lbl">Highlight</span>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Career timeline</h2>
+  <div class="legend" id="legend"></div>
+  <div class="gantt" id="gantt"></div>
+  <div class="axis"><div></div><div class="ticks" id="ticks"></div></div>
+  <div class="certtrack">
+    <div class="certlbl">Certifications</div>
+    <div class="certrail" id="certrail"></div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Experience <span style="text-transform:none;letter-spacing:0;font-weight:400" class="no-print">— click a role to expand</span></h2>
+  <div class="roles" id="roles"></div>
+</section>
+
+<section class="card">
+  <h2>Capability matrix</h2>
+  <div style="overflow-x:auto"><table class="mx" id="matrix"></table></div>
+  <div class="mxkey"><span class="cell on"></span>Applied in this role &nbsp;·&nbsp; derived from the responsibilities held at each organisation, coloured by career phase.</div>
+</section>
+
+<section class="card">
+  <h2>Technical stack</h2>
+  <dl class="stack" id="stack"></dl>
+</section>
+
+<section class="card">
+  <div class="facts">
+    <div>
+      <h3>Certifications</h3>
+      <ul id="certlist"></ul>
+    </div>
+    <div>
+      <h3>Education</h3>
+      <ul>
+        <li><b>Bachelor of Commerce (B.Com), Accountancy</b>Bangalore University, Bangalore<br><span>Jun 1999 – Jun 2002</span></li>
+      </ul>
+      <h3 style="margin-top:20px">Languages</h3>
+      <ul>
+        <li><b>English</b><span>C1 · Advanced</span></li>
+        <li><b>Hindi</b><span>B1 · Intermediate</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Availability</h3>
+      <ul>
+        <li><b>Location</b><span>Bengaluru, India</span></li>
+        <li><b>Passport</b><span>Valid through Apr 2032</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="card no-print" id="tables" aria-label="Underlying data as tables">
+  <h2>Data view</h2>
+  <table class="dt" id="dtRoles"></table>
+  <table class="dt" id="dtMatrix"></table>
+</section>
+
+<footer class="no-print">Interactive résumé · press <strong>⇩ PDF</strong> to print a clean copy</footer>
+</div>
+
+<div id="tip" role="tooltip" aria-hidden="true"></div>
+
+<script>
+"use strict";
+
+/* ── Data ─────────────────────────────────────────────────────
+   Every fact traces to the source résumé. Phase groups the five
+   roles into three categorical slots for the timeline.          */
+
+const AXIS = { from: 2011, to: 2027 };
+const NOW  = 2026.69;                      // September 2026
+
+const PHASES = {
+  arch: { label: "Automation architecture", color: "var(--s1)" },
+  dev:  { label: "Automation delivery",     color: "var(--s2)" },
+  itsm: { label: "IT service management",   color: "var(--s3)" }
+};
+
+const ROLES = [
+  { id:"wip", title:"Architect", co:"Wipro Ltd.", loc:"Bengaluru, India",
+    from:2021.25, to:NOW, dates:"Apr 2021 – Present", short:"Wipro", yr:"2021→", phase:"arch",
+    caps:["arch","build","integ","assess","doc","test","std","mentor","client"],
+    bullets:[
+      "Architect and deliver end-to-end UiPath automations for enterprise clients, owning solution design, build, testing, deployment and hypercare across the full automation lifecycle.",
+      "Design bot integrations spanning web applications, thick-client desktop applications, REST/HTTP API calls, PowerShell and VBScript, and SQL databases — removing manual handoffs between systems that do not talk to each other.",
+      "Author solution blueprints, architecture diagrams and technical design documents that translate business process maps into maintainable, reusable UiPath components.",
+      "Define reusable frameworks, coding standards and exception-handling patterns that cut build time on subsequent automations and reduce post-deployment defects.",
+      "Build and present proof-of-concepts that demonstrate technical feasibility and automation value, converting exploratory client discussions into funded delivery.",
+      "Mentor junior developers and run internal workshops on UiPath best practices, Orchestrator administration and advanced automation techniques.",
+      "Partner with business, infrastructure and security teams to clear deployment dependencies and keep releases on schedule."
+    ]},
+  { id:"cog", title:"Manager – Projects", co:"Cognizant Technology Solutions Pvt Ltd.", loc:"Bangalore, India",
+    from:2019.17, to:2021.25, dates:"Mar 2019 – Apr 2021", short:"Cognizant", yr:"2019–21", phase:"dev",
+    caps:["arch","build","assess","doc","test","lead","client"],
+    bullets:[
+      "Owned all technical aspects of RPA implementation projects, from requirement analysis and solution design through UAT and production rollout.",
+      "Authored and maintained the Solution Design Document (SDD) across the project lifecycle, keeping design artefacts aligned as business requirements evolved.",
+      "Translated as-is and to-be process designs into robotic solutions built on core workflow principles — efficient, well-structured, maintainable and easy to hand over.",
+      "Led a team of 4 developers on site at the client location, allocating work, reviewing code and holding the team to design and quality standards.",
+      "Supported UAT and rollout phases, triaging defects and turning fixes around inside the test window.",
+      "Introduced risk-management and escalation practices that surfaced delivery blockers early and kept projects stable through scope change."
+    ]},
+  { id:"isg", title:"Senior Consultant", co:"Information Services Group (ISG-One)", loc:"Bangalore, India",
+    from:2017.58, to:2019.08, dates:"Aug 2017 – Feb 2019", short:"ISG-One", yr:"2017–19", phase:"arch",
+    caps:["arch","build","assess","doc","test","std","mentor","client"],
+    bullets:[
+      "Provided architecture guidance to teams across multiple RPA products and client projects, with a primary focus on solution design quality.",
+      "Developed and documented RPA configuration best practices, then embedded them into new process and object builds.",
+      "Configured new RPA processes and objects on core workflow principles — efficient, well structured, maintainable and easy to understand.",
+      "Created and documented test procedures and scenarios for pre-UAT phases, and supported operational teams through UAT and rollout.",
+      "Mentored junior consultants, lifting their technical capability and reducing review cycles on their deliverables."
+    ]},
+  { id:"ibm", title:"Application Developer", co:"IBM India Pvt Ltd", loc:"Bangalore, India",
+    from:2016.33, to:2017.58, dates:"May 2016 – Aug 2017", short:"IBM", yr:"2016–17", phase:"dev",
+    caps:["arch","build","assess","doc","std"],
+    bullets:[
+      "Designed and configured Blue Prism process solutions and reusable objects following Blue Prism design principles and conventions.",
+      "Identified new automation opportunities and ran feasibility analysis and effort estimation on candidate processes.",
+      "Analysed and documented business processes in detail, and identified and communicated the technical infrastructure requirements needed to support them.",
+      "Introduced peer code reviews within the team, improving code quality and reducing defects escaping into the deployment phase.",
+      "Supported live processes and delivered change requirements through a structured change-control process."
+    ]},
+  { id:"hp", title:"Service Level Manager", co:"Hewlett-Packard", loc:"Bangalore, India",
+    from:2011.25, to:2016.33, dates:"Apr 2011 – May 2016", short:"HP", yr:"2011–16", phase:"itsm",
+    caps:["build","integ","mentor","client","itil"],
+    bullets:[
+      "Automated recurring service reporting with advanced Excel functions and VBA macros, removing manual effort from the monthly reporting cycle.",
+      "Built VB.Net and Ruby Watir programs to automate handling of client-sensitive data — the first automation work that led into the RPA career track.",
+      "Managed SLA and KPI performance for Service Request Management, running monthly reviews with client and internal teams against SLA/OLA commitments.",
+      "Owned critical incidents with executive visibility, coordinating resolution and communication to top management.",
+      "Worked with Change Management to control unsuccessful and unauthorised changes and to clear backlog changes to scheduled implementation.",
+      "Produced trend analysis across ITIL processes, converting incident and change data into proactive service-improvement actions rather than reactive fixes."
+    ]}
+];
+
+const CAPS = [
+  { id:"arch",   name:"Solution architecture" },
+  { id:"build",  name:"Automation development" },
+  { id:"integ",  name:"Systems integration & scripting" },
+  { id:"assess", name:"Process assessment & feasibility" },
+  { id:"doc",    name:"Design documentation (SDD)" },
+  { id:"test",   name:"Testing, UAT & rollout" },
+  { id:"std",    name:"Standards & code review" },
+  { id:"lead",   name:"Team leadership" },
+  { id:"mentor", name:"Mentoring & enablement" },
+  { id:"client", name:"Client & stakeholder management" },
+  { id:"itil",   name:"ITIL service management" }
+];
+
+const FILTERS = [
+  { id:"all",    name:"All roles" },
+  { id:"arch",   name:"Architecture" },
+  { id:"integ",  name:"Integration & scripting" },
+  { id:"lead",   name:"Leadership" },
+  { id:"mentor", name:"Mentoring" },
+  { id:"client", name:"Client engagement" },
+  { id:"itil",   name:"Service management" }
+];
+
+const CERTS = [
+  { at:2011.00, short:"2011", name:"ITIL V3 Foundation", when:"Jan 2011" },
+  { at:2013.17, short:"2013", name:"ITIL Intermediate — OSA (Operations Support & Analysis)", when:"Mar 2013" },
+  { at:2016.42, short:"2016", name:"Blue Prism Accredited Developer", when:"Jun 2016" },
+  { at:2020.08, short:"2020", name:"Blue Prism Accredited Professional Developer", when:"Feb 2020" },
+  { at:2025.08, short:"2025", name:"UiPath Certified Professional — Automation Developer Associate", when:"Feb 2025" }
+];
+
+const STACK = [
+  ["RPA platforms",        ["UiPath Studio","UiPath Orchestrator","Blue Prism"]],
+  ["Languages & scripting",["Python","VB.Net","PowerShell","VBA","VBScript","Ruby (Watir)","Regular Expressions"]],
+  ["Integration & data",   ["REST / HTTP APIs","SQL","MS Access","SharePoint Workflow"]],
+  ["Test & web automation",["Playwright","Ruby Watir"]],
+  ["Productivity",         ["Advanced Excel","Excel / VBA macro automation"]],
+  ["Practice",             ["Solution architecture","SDD authoring","Feasibility & estimation","Reusable component design","Code review","POC development","UAT & hypercare","ITIL V3"]]
+];
+
+/* ── Helpers ─────────────────────────────────────────────────── */
+const $  = (s, r=document) => r.querySelector(s);
+const el = (tag, cls, html) => { const n = document.createElement(tag);
+  if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; };
+const pct = y => ((y - AXIS.from) / (AXIS.to - AXIS.from)) * 100;
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+/* ── Tooltip ─────────────────────────────────────────────────── */
+const tip = $("#tip");
+function showTip(e, html) {
+  tip.innerHTML = html; tip.dataset.on = "true";
+  moveTip(e);
+}
+function moveTip(e) {
+  const p = 14, r = tip.getBoundingClientRect();
+  let x = e.clientX + p, y = e.clientY + p;
+  if (x + r.width  > innerWidth  - 8) x = e.clientX - r.width  - p;
+  if (y + r.height > innerHeight - 8) y = e.clientY - r.height - p;
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+function hideTip() { tip.dataset.on = "false"; }
+function bindTip(node, html) {
+  node.addEventListener("mouseenter", e => showTip(e, html));
+  node.addEventListener("mousemove", moveTip);
+  node.addEventListener("mouseleave", hideTip);
+  node.addEventListener("focus", () => {
+    const b = node.getBoundingClientRect();
+    showTip({ clientX: b.left + b.width / 2, clientY: b.top }, html);
+  });
+  node.addEventListener("blur", hideTip);
+}
+
+/* ── Legend ──────────────────────────────────────────────────── */
+(function legend() {
+  const box = $("#legend");
+  for (const k in PHASES) {
+    const n = el("span", null,
+      `<i style="background:${PHASES[k].color}"></i>${PHASES[k].label}`);
+    box.appendChild(n);
+  }
+})();
+
+/* ── Timeline ────────────────────────────────────────────────── */
+(function gantt() {
+  const box = $("#gantt");
+  ROLES.forEach(r => {
+    const row = el("div", "grow"); row.dataset.role = r.id;
+
+    row.appendChild(el("div", "gname",
+      `<b>${esc(r.title)}</b><em>${esc(r.short)}</em>`));
+
+    const track = el("div", "track");
+    const left = pct(r.from), width = pct(r.to) - pct(r.from);
+
+    const bar = el("button", "bar");
+    bar.style.left = left + "%";
+    bar.style.width = width + "%";
+    bar.style.background = PHASES[r.phase].color;
+    bar.setAttribute("aria-label",
+      `${r.title}, ${r.co}, ${r.dates}. ${PHASES[r.phase].label}.`);
+    bindTip(bar,
+      `<b>${esc(r.title)}</b>${esc(r.co)}<br>${esc(r.dates)}<br>
+       <span style="opacity:.7">${esc(PHASES[r.phase].label)}</span>`);
+    bar.addEventListener("click", () => openRole(r.id));
+    track.appendChild(bar);
+
+    // Direct label: inside when the bar is wide enough, otherwise just outside.
+    const lab = el("div", "blab " + (width >= 20 ? "inside" : "outside"), r.dates);
+    if (width >= 20) lab.style.left = "calc(" + left + "% + 9px)";
+    else             lab.style.left = "calc(" + (left + width) + "% + 8px)";
+    track.appendChild(lab);
+
+    row.appendChild(track);
+    box.appendChild(row);
+  });
+})();
+
+(function ticks() {
+  const box = $("#ticks");
+  for (let y = AXIS.from; y <= AXIS.to; y += 2) {
+    const t = el("div", "tick", String(y));
+    t.style.left = pct(y) + "%";
+    box.appendChild(t);
+  }
+})();
+
+(function certRail() {
+  const rail = $("#certrail");
+  CERTS.forEach(c => {
+    const d = el("button", "cdot");
+    d.style.left = pct(c.at) + "%";
+    d.setAttribute("aria-label", `${c.name}, ${c.when}`);
+    bindTip(d, `<b>${esc(c.name)}</b>${esc(c.when)}`);
+    rail.appendChild(d);
+    const y = el("div", "cyr", c.short);
+    y.style.left = pct(c.at) + "%";
+    rail.appendChild(y);
+  });
+})();
+
+/* ── Role cards ──────────────────────────────────────────────── */
+(function roles() {
+  const box = $("#roles");
+  ROLES.forEach((r, i) => {
+    const card = el("div", "role");
+    card.dataset.role = r.id;
+    card.dataset.open = i === 0 ? "true" : "false";
+
+    const head = el("button", "rhead");
+    head.setAttribute("aria-expanded", i === 0 ? "true" : "false");
+    head.innerHTML =
+      `<span class="rdot" style="background:${PHASES[r.phase].color}"></span>
+       <span class="rtitle">${esc(r.title)}</span>
+       <span class="rco">${esc(r.co)}</span>
+       <span class="rdate">${esc(r.dates)}</span>
+       <span class="rchev">▶</span>`;
+    head.addEventListener("click", () => {
+      const open = card.dataset.open === "true";
+      card.dataset.open = String(!open);
+      head.setAttribute("aria-expanded", String(!open));
+    });
+
+    const body = el("div", "rbody");
+    body.innerHTML = "<ul>" + r.bullets.map(b => `<li>${esc(b)}</li>`).join("") + "</ul>";
+
+    card.append(head, body);
+    box.appendChild(card);
+  });
+})();
+
+function openRole(id) {
+  const card = document.querySelector(`.role[data-role="${id}"]`);
+  if (!card) return;
+  card.dataset.open = "true";
+  card.querySelector(".rhead").setAttribute("aria-expanded", "true");
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+/* ── Capability matrix ───────────────────────────────────────── */
+(function matrix() {
+  const t = $("#matrix");
+  const cols = [...ROLES].reverse();          // chronological, oldest first
+
+  const thead = el("thead");
+  const hr = el("tr");
+  hr.appendChild(el("th", "corner"));
+  cols.forEach(r => hr.appendChild(el("th", "colh",
+    `<b>${esc(r.short)}</b><em>${esc(r.yr)}</em>`)));
+  thead.appendChild(hr);
+
+  const tbody = el("tbody");
+  CAPS.forEach(c => {
+    const tr = el("tr");
+    tr.appendChild(el("th", null, esc(c.name)));
+    cols.forEach(r => {
+      const on = r.caps.includes(c.id);
+      const td = el("td");
+      const dot = el("span", "cell " + (on ? "on" : "off"));
+      if (on) dot.style.setProperty("--c", PHASES[r.phase].color);
+      dot.setAttribute("role", "img");
+      dot.setAttribute("aria-label",
+        on ? `${c.name}: applied at ${r.short}` : `${c.name}: not at ${r.short}`);
+      if (on) bindTip(dot, `<b>${esc(c.name)}</b>${esc(r.title)}, ${esc(r.short)}`);
+      td.appendChild(dot);
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+
+  t.append(thead, tbody);
+})();
+
+/* ── Stack ───────────────────────────────────────────────────── */
+(function stack() {
+  const dl = $("#stack");
+  STACK.forEach(([label, items]) => {
+    dl.appendChild(el("dt", null, esc(label)));
+    const dd = el("dd");
+    items.forEach(i => dd.appendChild(el("span", "tag", esc(i))));
+    dl.appendChild(dd);
+  });
+})();
+
+/* ── Certification list ──────────────────────────────────────── */
+(function certList() {
+  const ul = $("#certlist");
+  [...CERTS].reverse().forEach(c =>
+    ul.appendChild(el("li", null, `<b>${esc(c.name)}</b><span>${esc(c.when)}</span>`)));
+})();
+
+/* ── Filters — dim, never repaint ────────────────────────────── */
+(function filters() {
+  const box = $("#filters");
+  let active = "all";
+
+  FILTERS.forEach(f => {
+    const b = el("button", "chip", esc(f.name));
+    b.type = "button";
+    b.setAttribute("aria-pressed", String(f.id === "all"));
+    b.addEventListener("click", () => {
+      active = active === f.id && f.id !== "all" ? "all" : f.id;
+      box.querySelectorAll(".chip").forEach((c, i) =>
+        c.setAttribute("aria-pressed", String(FILTERS[i].id === active)));
+      apply(active);
+    });
+    box.appendChild(b);
+  });
+
+  function apply(id) {
+    ROLES.forEach(r => {
+      const dim = id !== "all" && !r.caps.includes(id);
+      document.querySelectorAll(`[data-role="${r.id}"]`)
+        .forEach(n => n.classList.toggle("dim", dim));
+    });
+  }
+})();
+
+/* ── Theme toggle ────────────────────────────────────────────── */
+(function theme() {
+  const KEY = "mk-resume-theme";
+  const saved = localStorage.getItem(KEY);
+  if (saved) document.documentElement.dataset.theme = saved;
+
+  $("#themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.dataset.theme;
+    const sysDark = matchMedia("(prefers-color-scheme: dark)").matches;
+    const now = cur ? (cur === "dark" ? "light" : "dark") : (sysDark ? "light" : "dark");
+    document.documentElement.dataset.theme = now;
+    localStorage.setItem(KEY, now);
+  });
+})();
+
+/* ── Data view + print ───────────────────────────────────────── */
+(function dataView() {
+  const cols = [...ROLES].reverse();
+
+  $("#dtRoles").innerHTML =
+    "<caption>Roles</caption><thead><tr><th>Role</th><th>Organisation</th><th>Period</th><th>Phase</th></tr></thead><tbody>" +
+    ROLES.map(r => `<tr><td>${esc(r.title)}</td><td>${esc(r.co)}</td><td>${esc(r.dates)}</td><td>${esc(PHASES[r.phase].label)}</td></tr>`).join("") +
+    "</tbody>";
+
+  $("#dtMatrix").innerHTML =
+    "<caption>Capability matrix</caption><thead><tr><th>Capability</th>" +
+    cols.map(r => `<th>${esc(r.short)}</th>`).join("") + "</tr></thead><tbody>" +
+    CAPS.map(c => `<tr><td>${esc(c.name)}</td>` +
+      cols.map(r => `<td>${r.caps.includes(c.id) ? "Yes" : "—"}</td>`).join("") + "</tr>").join("") +
+    "</tbody>";
+
+  const btn = $("#tableBtn"), box = $("#tables");
+  btn.addEventListener("click", () => {
+    const on = box.dataset.show === "true";
+    box.dataset.show = String(!on);
+    btn.setAttribute("aria-expanded", String(!on));
+    if (!on) box.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+
+$("#printBtn").addEventListener("click", () => window.print());
+</script>
+</body>
+</html>
