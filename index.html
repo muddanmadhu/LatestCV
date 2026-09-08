@@ -180,6 +180,8 @@ button:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
 .role[data-open="true"] .rbody { display: block; }
 .rbody ul { margin: 0; padding-left: 17px; }
 .rbody li { font-size: 13.8px; line-height: 1.55; color: var(--ink-2); margin-bottom: 6px; }
+.rbody .poc { margin-top: 11px; padding: 2px 0 2px 13px; border-left: 2px solid var(--s1); }
+.rbody .poc > b { display: block; font-size: 13.2px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
 
 /* ── Capability matrix ──────────────────────────────────────── */
 .mx { width: 100%; border-collapse: collapse; }
@@ -408,7 +410,7 @@ const PHASES = {
 const ROLES = [
   { id:"wip", title:"Architect", co:"Wipro Ltd.", loc:"Bengaluru, India",
     from:2021.25, to:NOW, dates:"Apr 2021 – Present", short:"Wipro", yr:"2021→", phase:"arch",
-    caps:["arch","build","integ","assess","doc","test","std","mentor","client"],
+    caps:["arch","build","integ","assess","doc","test","std","lead","mentor","client","testauto","eval"],
     bullets:[
       "Architect and deliver end-to-end UiPath automations for enterprise clients, owning solution design, build, testing, deployment and hypercare across the full automation lifecycle.",
       "Design bot integrations spanning web applications, thick-client desktop applications, REST/HTTP API calls, PowerShell and VBScript, and SQL databases — removing manual handoffs between systems that do not talk to each other.",
@@ -417,7 +419,20 @@ const ROLES = [
       "Build and present proof-of-concepts that demonstrate technical feasibility and automation value, converting exploratory client discussions into funded delivery.",
       "Mentor junior developers and run internal workshops on UiPath best practices, Orchestrator administration and advanced automation techniques.",
       "Partner with business, infrastructure and security teams to clear deployment dependencies and keep releases on schedule."
-    ]},
+    ],
+    poc:{
+      label:"Selected engagement — Enterprise test-automation proof-of-concept (UiPath Test Suite)",
+      bullets:[
+        "Led a UiPath test-automation proof-of-concept for a large enterprise client, covering SAP test authoring, cross-platform execution, API-driven orchestration and CI/CD integration.",
+        "Automated SAP through native SAP activities rather than generic UI automation, making object interaction, data extraction and transaction execution markedly more reliable; tuned Strict against Fuzzy selectors to balance exact element matching with resilience to dynamic SAP UI changes.",
+        "Packaged SAP components into reusable libraries, establishing a shared framework for multi-project automation and broad regression suites.",
+        "Benchmarked UiPath against Worksoft for SAP authoring and documented the trade-off: Worksoft's model-based, low-technical approach produces test variants faster, while UiPath needs more setup around arguments, parameters and workflow mapping.",
+        "Extended automation to macOS with UiPath Studio for macOS — Safari automation, native AppleScript for account-level tasks and terminal-initiated workflows — ran SAP GUI automation on macOS, connected command-line tooling to Claude, and wrote custom VB.NET in-workflow to generate TOTP codes for multi-factor authentication.",
+        "Moved test data and artefacts off local machines using UiPath Data Service Entities for structured queries and Storage Buckets for test files, and verified Box integration for enterprise document workflows.",
+        "Triggered UiPath Test Sets programmatically over REST from Postman and Bruno, proving external orchestration from enterprise CI/CD pipelines, schedulers and test-orchestration platforms without manual execution in Test Manager.",
+        "Hardened execution with Try/Catch, Retry Scopes and loops to absorb transient errors, and added formal assertions so runs report true pass/fail rather than merely completing; validated GitHub for source control and asset deployment, and used GenAI upstream to speed requirement decomposition and test-case generation."
+      ]
+    }},
   { id:"cog", title:"Manager – Projects", co:"Cognizant Technology Solutions Pvt Ltd.", loc:"Bangalore, India",
     from:2019.17, to:2021.25, dates:"Mar 2019 – Apr 2021", short:"Cognizant", yr:"2019–21", phase:"dev",
     caps:["arch","build","assess","doc","test","lead","client"],
@@ -431,7 +446,7 @@ const ROLES = [
     ]},
   { id:"isg", title:"Senior Consultant", co:"Information Services Group (ISG-One)", loc:"Bangalore, India",
     from:2017.58, to:2019.08, dates:"Aug 2017 – Feb 2019", short:"ISG-One", yr:"2017–19", phase:"arch",
-    caps:["arch","build","assess","doc","test","std","mentor","client"],
+    caps:["arch","build","assess","doc","test","std","mentor","client","eval"],
     bullets:[
       "Provided architecture guidance to teams across multiple RPA products and client projects, with a primary focus on solution design quality.",
       "Developed and documented RPA configuration best practices, then embedded them into new process and object builds.",
@@ -473,6 +488,8 @@ const CAPS = [
   { id:"lead",   name:"Team leadership" },
   { id:"mentor", name:"Mentoring & enablement" },
   { id:"client", name:"Client & stakeholder management" },
+  { id:"testauto", name:"Test automation & CI/CD" },
+  { id:"eval",   name:"Platform evaluation & tool selection" },
   { id:"itil",   name:"ITIL service management" }
 ];
 
@@ -482,6 +499,7 @@ const FILTERS = [
   { id:"integ",  name:"Integration & scripting" },
   { id:"lead",   name:"Leadership" },
   { id:"mentor", name:"Mentoring" },
+  { id:"testauto", name:"Test automation" },
   { id:"client", name:"Client engagement" },
   { id:"itil",   name:"Service management" }
 ];
@@ -495,12 +513,15 @@ const CERTS = [
 ];
 
 const STACK = [
-  ["RPA platforms",        ["UiPath Studio","UiPath Orchestrator","Blue Prism"]],
-  ["Languages & scripting",["Python","VB.Net","PowerShell","VBA","VBScript","Ruby (Watir)","Regular Expressions"]],
-  ["Integration & data",   ["REST / HTTP APIs","SQL","MS Access","SharePoint Workflow"]],
-  ["Test & web automation",["Playwright","Ruby Watir"]],
+  ["RPA & test platforms", ["UiPath Studio","UiPath Studio for macOS","UiPath Orchestrator","UiPath Test Suite","UiPath Test Manager","UiPath Data Service","Blue Prism","Worksoft (evaluation)"]],
+  ["Enterprise apps",      ["SAP (native activities)","SAP GUI automation","Strict / Fuzzy selectors","Box","SharePoint Workflow"]],
+  ["Languages & scripting",["Python","VB.Net","PowerShell","VBA","VBScript","AppleScript","Ruby (Watir)","Regular Expressions"]],
+  ["Integration & data",   ["REST / HTTP APIs","Postman","Bruno","UiPath Entities","Storage Buckets","SQL","MS Access"]],
+  ["Test automation",      ["Test Sets","API-triggered execution","Assertion-based pass/fail","Regression suites","Reusable test libraries","Playwright","Ruby Watir"]],
+  ["DevOps & reliability", ["GitHub","Source control & asset deployment","CI/CD integration","Try/Catch","Retry Scopes"]],
+  ["AI",                   ["GenAI test-case generation","Requirement decomposition","Claude CLI integration"]],
   ["Productivity",         ["Advanced Excel","Excel / VBA macro automation"]],
-  ["Practice",             ["Solution architecture","SDD authoring","Feasibility & estimation","Reusable component design","Code review","POC development","UAT & hypercare","ITIL V3"]]
+  ["Practice",             ["Solution architecture","SDD authoring","Feasibility & estimation","Reusable component design","Code review","POC development","UAT & hypercare","Team leadership","ITIL V3"]]
 ];
 
 /* ── Helpers ─────────────────────────────────────────────────── */
@@ -626,7 +647,12 @@ function bindTip(node, html) {
     });
 
     const body = el("div", "rbody");
-    body.innerHTML = "<ul>" + r.bullets.map(b => `<li>${esc(b)}</li>`).join("") + "</ul>";
+    let html = "<ul>" + r.bullets.map(b => `<li>${esc(b)}</li>`).join("") + "</ul>";
+    if (r.poc) {
+      html += `<div class="poc"><b>${esc(r.poc.label)}</b><ul>` +
+              r.poc.bullets.map(b => `<li>${esc(b)}</li>`).join("") + `</ul></div>`;
+    }
+    body.innerHTML = html;
 
     card.append(head, body);
     box.appendChild(card);
