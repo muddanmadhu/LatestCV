@@ -181,7 +181,10 @@ button:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
 .role[data-open="true"] .rbody { display: block; }
 .rbody ul { margin: 0; padding-left: 17px; }
 .rbody li { font-size: 13.8px; line-height: 1.55; color: var(--ink-2); margin-bottom: 6px; }
-.rbody .poc { margin-top: 11px; padding: 2px 0 2px 13px; border-left: 2px solid var(--s1); }
+/* The stripe inherits the role's own phase colour, so it matches that role's
+   timeline bar and title dot rather than hard-coding a data colour. */
+.rbody .poc { margin-top: 11px; padding: 2px 0 2px 13px;
+              border-left: 2px solid var(--poc-accent, var(--border)); }
 .rbody .poc > b { display: block; font-size: 13.2px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
 
 /* ── Capability matrix ──────────────────────────────────────── */
@@ -654,7 +657,8 @@ function bindTip(node, html) {
     const body = el("div", "rbody");
     let html = "<ul>" + r.bullets.map(b => `<li>${esc(b)}</li>`).join("") + "</ul>";
     if (r.poc) {
-      html += `<div class="poc"><b>${esc(r.poc.label)}</b><ul>` +
+      html += `<div class="poc" style="--poc-accent:${PHASES[r.phase].color}">` +
+              `<b>${esc(r.poc.label)}</b><ul>` +
               r.poc.bullets.map(b => `<li>${esc(b)}</li>`).join("") + `</ul></div>`;
     }
     body.innerHTML = html;
